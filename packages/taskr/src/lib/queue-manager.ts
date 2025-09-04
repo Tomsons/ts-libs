@@ -80,6 +80,7 @@ export interface QueueOptions {
  */
 export class QueueManager<T = unknown> {
     private queue: Task<T>[] = [];
+    private failedQueue: Task<T>[] = [];
     private running = new Map<string, { task: Task<T>; attempts: number }>();
     private options: QueueOptions;
     private listeners: ((progress: TaskProgress) => void)[] = [];
@@ -97,16 +98,32 @@ export class QueueManager<T = unknown> {
     }
 
     /**
+     * Returns a copy of the tasks in the failed queue.
+     */
+    public getFailedTasks(): Task<T>[] {
+        return [...this.failedQueue];
+    }
+
+    /**
      * Adds a new task to the queue
      * @param task Task to be queued
      */
     public enqueue(task: Task<T>): void {
         this.queue.push({
             ...task,
+            priority: task.priority ?? 0,
             retryPolicy: task.retryPolicy ?? this.options.defaultRetryPolicy,
             maxRetries: task.maxRetries ?? this.options.maxRetries,
         });
         this.processQueue();
+    }
+
+    /**
+     * Re-queues all tasks from the failed queue for processing.
+     */
+    public reprocessFailedTasks(): void {
+        this.failedQueue.forEach(task => this.enqueue(task));
+        this.failedQueue = [];
     }
 
     /**
@@ -177,6 +194,9 @@ export class QueueManager<T = unknown> {
             return;
         }
 
+        // Sort by priority (higher number is higher priority)
+        this.queue.sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
+
         const task = this.queue.shift();
         if (!task) return;
 
@@ -208,13 +228,14 @@ export class QueueManager<T = unknown> {
             const {attempts} = runningTask;
             if (attempts < (task.maxRetries ?? this.options.maxRetries!)) {
                 const delay = task.retryPolicy!.calculateDelay(attempts);
-                this.notifyProgress(task.id, 0, TaskStatus.FAILED, error as Error);
+                this.notifyProgress(task.id, 0, TaskStatus.RUNNING, error as Error); // Notify as running with error for retry
                 await new Promise(resolve => setTimeout(resolve, delay));
                 this.running.set(task.id, {task, attempts: attempts + 1});
                 return this.executeTask(task);
             }
 
             this.notifyProgress(task.id, 0, TaskStatus.FAILED, error as Error);
+            this.failedQueue.push(task);
             this.running.delete(task.id);
         }
     }

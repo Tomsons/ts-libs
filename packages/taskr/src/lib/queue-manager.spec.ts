@@ -79,6 +79,42 @@ describe('QueueManager', () => {
     expect(queueManager.running.size).toBe(0);
   });
 
+  it('should move a task to the failed queue after all retries', async () => {
+    vi.useFakeTimers();
+    const queueManager = new QueueManager({ concurrency: 1, maxRetries: 1 });
+    const { task, execute } = createTestTask({ id: 'task1', shouldFail: true });
+
+    queueManager.enqueue(task);
+    await vi.runAllTimersAsync();
+
+    expect(execute).toHaveBeenCalledTimes(2); // 1 initial + 1 retry
+    expect(queueManager.getFailedTasks()).toHaveLength(1);
+    expect(queueManager.getFailedTasks()[0].id).toBe('task1');
+    vi.useRealTimers();
+  });
+
+  it('should reprocess failed tasks', async () => {
+    const queueManager = new QueueManager({ concurrency: 1, maxRetries: 0 });
+    const execute = vi.fn()
+      .mockRejectedValueOnce(new Error('fail'))
+      .mockResolvedValueOnce('success');
+
+    const task: Task<string> = { id: 'task1', execute };
+
+    queueManager.enqueue(task);
+    await queueManager.waitForCompletion();
+
+    expect(execute).toHaveBeenCalledTimes(1);
+    expect(queueManager.getFailedTasks()).toHaveLength(1);
+
+    queueManager.reprocessFailedTasks();
+    expect(queueManager.getFailedTasks()).toHaveLength(0);
+
+    await queueManager.waitForCompletion();
+    expect(execute).toHaveBeenCalledTimes(2);
+    expect(queueManager.getFailedTasks()).toHaveLength(0);
+  });
+
   it('should retry failed tasks', async () => {
     vi.useFakeTimers();
     const queueManager = new QueueManager({ concurrency: 1, maxRetries: 2 });
@@ -91,11 +127,12 @@ describe('QueueManager', () => {
     await vi.runAllTimersAsync();
 
     expect(execute).toHaveBeenCalledTimes(3); // 1 initial + 2 retries
-    expect(progressListener).toHaveBeenCalledWith(expect.objectContaining({ status: TaskStatus.FAILED, error: expect.any(Error) }));
+    expect(progressListener).toHaveBeenCalledWith(expect.objectContaining({ status: TaskStatus.RUNNING, error: expect.any(Error) }));
 
     // Check final state
-    const finalCall = progressListener.mock.calls[progressListener.mock.calls.length - 1][0];
-    expect(finalCall).toEqual(expect.objectContaining({ taskId: 'task1', status: TaskStatus.FAILED }));
+    const finalCall = progressListener.mock.calls.find(c => c[0].status === TaskStatus.FAILED);
+    expect(finalCall).toBeDefined();
+    expect(finalCall[0]).toEqual(expect.objectContaining({ taskId: 'task1', status: TaskStatus.FAILED }));
 
     vi.useRealTimers();
   });
