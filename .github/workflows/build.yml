@@ -34,20 +34,14 @@ jobs:
         
       - name: Bump version and push tag
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: patch
-          tag_prefix: v
-          release_branches: main
-          create_annotated_tag: true
-          custom_release_rules: |
-            docs:patch
-            style:patch
-            refactor:patch
-            perf:patch
-            test:patch
-            build:patch
-            ci:patch
-            chore:patch
-            revert:patch
+
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
