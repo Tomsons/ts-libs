@@ -1,1 +1,1 @@
-export * from './lib/taskr.js';
+export * from './lib/queue-manager.js';
