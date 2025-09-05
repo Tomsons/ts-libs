@@ -1,3 +1,13 @@
+## 0.1.0 (2025-09-05)
+
+### 🚀 Features
+
+- introduce file upload task ([#2](https://github.com/Tomsons/ts-libs/pull/2))
+
+### ❤️ Thank You
+
+- Thomas Zayouna @Tomsons
+
 ## 0.0.7 (2025-09-05)
 
 ### 🩹 Fixes
