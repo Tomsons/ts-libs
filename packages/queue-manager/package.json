@@ -5,6 +5,10 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "repository": {
+    "url": "https://github.com/Tomsons/ts-libs",
+    "directory": "packages/queue-manager"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
