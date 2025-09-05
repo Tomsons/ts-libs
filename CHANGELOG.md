@@ -1,3 +1,13 @@
+## 0.1.1 (2025-09-05)
+
+### 🩹 Fixes
+
+- license and repo ([ae168cf](https://github.com/Tomsons/ts-libs/commit/ae168cf))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.1.0 (2025-09-05)
 
 ### 🚀 Features
