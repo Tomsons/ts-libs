@@ -71,4 +71,4 @@ jobs:
           pnpm nx release --skip-publish
           git push origin main --tags
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
