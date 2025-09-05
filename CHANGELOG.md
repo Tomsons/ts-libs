@@ -1,3 +1,13 @@
+## 0.1.2 (2025-09-05)
+
+### 🩹 Fixes
+
+- **upload:** task implementation ([bc9ae88](https://github.com/Tomsons/ts-libs/commit/bc9ae88))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.1.1 (2025-09-05)
 
 ### 🩹 Fixes
