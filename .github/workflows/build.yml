@@ -70,3 +70,5 @@ jobs:
           git config --global user.name "[GH Actions] Release bot"
           pnpm nx release --skip-publish
           git push origin main --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
