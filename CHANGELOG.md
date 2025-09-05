@@ -1,3 +1,13 @@
+## 0.0.5 (2025-09-05)
+
+### 🩹 Fixes
+
+- deploy public access ([dc343af](https://github.com/Tomsons/ts-libs/commit/dc343af))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.0.4 (2025-09-05)
 
 ### 🩹 Fixes
