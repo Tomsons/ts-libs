@@ -38,7 +38,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm run-many -t build
+        run: pnpm nx run-many -t build
 
       - name: Publish
         run: |
