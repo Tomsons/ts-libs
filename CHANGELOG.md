@@ -1,3 +1,26 @@
+## 0.0.3 (2025-09-05)
+
+### 🚀 Features
+
+- try push ([b0dce2e](https://github.com/Tomsons/ts-libs/commit/b0dce2e))
+- try push ([7ea5a6a](https://github.com/Tomsons/ts-libs/commit/7ea5a6a))
+
+### 🩹 Fixes
+
+- try release package ([49c2cda](https://github.com/Tomsons/ts-libs/commit/49c2cda))
+- try release ([1eddf95](https://github.com/Tomsons/ts-libs/commit/1eddf95))
+- try PR ([#1](https://github.com/Tomsons/ts-libs/pull/1))
+- try push on protected ([12f87bd](https://github.com/Tomsons/ts-libs/commit/12f87bd))
+- try gh token ([866a770](https://github.com/Tomsons/ts-libs/commit/866a770))
+- **ci:** release wf ([535d314](https://github.com/Tomsons/ts-libs/commit/535d314))
+- **ci:** try trigger release ([c61612c](https://github.com/Tomsons/ts-libs/commit/c61612c))
+- **ci:** set env ([d29d62f](https://github.com/Tomsons/ts-libs/commit/d29d62f))
+
+### ❤️ Thank You
+
+- Thomas Zayouna @Tomsons
+- tom @Tomsons
+
 ## 0.0.2 (2025-09-05)
 
 ### 🩹 Fixes
