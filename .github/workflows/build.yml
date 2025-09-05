@@ -66,3 +66,4 @@ jobs:
           git config --global user.email "tzayouna@gmail.com"
           git config --global user.name "[GH Actions] Release bot"
           pnpm nx release --skip-publish
+          git push origin main --tags
