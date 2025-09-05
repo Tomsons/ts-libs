@@ -62,4 +62,7 @@ jobs:
         run: pnpm install
 
       - name: Create new release
-        run: pnpm nx release --skip-publish
+        run: |
+          git config --global user.email "tzayouna@gmail.com"
+          git config --global user.name "[GH Actions] Release bot"
+          pnpm nx release --skip-publish
