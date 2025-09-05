@@ -110,7 +110,7 @@ export class FileUploadTask<T, Result = FileUploadTaskResult<T>> implements Task
         this.retryPolicy = retryPolicy;
     }
 
-    public async execute(progress: (progress: TaskProgress) => void): Promise<Result> {
+    public execute = async (progress: (progress: TaskProgress) => void): Promise<Result> => {
         const stream = this.file.stream();
         const totalSize = this.file.size;
         const taskId = this.id;
@@ -150,7 +150,7 @@ export class FileUploadTask<T, Result = FileUploadTaskResult<T>> implements Task
         return {data} as Result;
     }
 
-    public cancel(): void {
+    public cancel = (): void => {
         this.abortController.abort();
     }
 }
