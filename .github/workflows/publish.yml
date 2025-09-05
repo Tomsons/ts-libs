@@ -37,11 +37,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build
+        run: pnpm run-many -t build
+
       - name: Publish
         run: |
           git config --global user.email "tzayouna@gmail.com"
           git config --global user.name "[GH Actions] Release bot"
-          pnpm nx release publish
+          pnpm nx release publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           # We need to set provenance to true in order to generate provenance statement

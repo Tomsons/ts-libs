@@ -3,9 +3,7 @@ on:
   push:
     branches: [main]
     tags-ignore:
-      - 'v*'
-  pull_request:
-    branches: [main]
+      - 'v*.*.*'
 
 permissions:
   contents: write
@@ -33,7 +31,7 @@ jobs:
           version: latest
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Test and build
         run: pnpm nx run-many -t test
@@ -64,7 +62,7 @@ jobs:
           version: latest
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Create new release
         run: |
