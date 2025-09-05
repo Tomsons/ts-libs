@@ -39,6 +39,6 @@ jobs:
           git config --global user.name "[GH Actions] Release bot"
           pnpm nx release publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           # We need to set provenance to true in order to generate provenance statement
           NPM_CONFIG_PROVENANCE: true
