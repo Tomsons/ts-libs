@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - 'v*.*.*'
-    branches:
-      - main
 
 jobs:
   publish:
@@ -40,7 +38,7 @@ jobs:
         run: |
           git config --global user.email "tzayouna@gmail.com"
           git config --global user.name "[GH Actions] Release bot"
-          npx nx release publish
+          pnpm nx release publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
           # We need to set provenance to true in order to generate provenance statement
