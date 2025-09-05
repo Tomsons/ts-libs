@@ -1,0 +1,47 @@
+name: Publish Package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          # Here we can setup some private registry url like nexus / jFrog,
+          # you can skip this parameter if you are using custom .npmrc file
+          registry-url: https://registry.npmjs.org/
+        env:
+          # Your personal npm access token: https://docs.npmjs.com/creating-and-viewing-access-tokens
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # We need to set provenance to true in order to generate provenance statement
+          NPM_CONFIG_PROVENANCE: true
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Publish
+        run: |
+          git config --global user.email "tzayouna@gmail.com"
+          git config --global user.name "[GH Actions] Release bot"
+          npx nx release publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+          # We need to set provenance to true in order to generate provenance statement
+          NPM_CONFIG_PROVENANCE: true
