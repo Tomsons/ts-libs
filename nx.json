@@ -44,37 +44,6 @@
     "version": {
       "preVersionCommand": "pnpm dlx nx run-many -t build",
       "conventionalCommits": true
-    },
-    "conventionalCommits": {
-      "types": {
-        "feat": {
-          "release": "minor"
-        },
-        "fix": {
-          "release": "patch"
-        },
-        "perf": {
-          "release": "patch"
-        },
-        "docs": {
-          "release": false
-        },
-        "style": {
-          "release": false
-        },
-        "refactor": {
-          "release": false
-        },
-        "test": {
-          "release": false
-        },
-        "chore": {
-          "release": false
-        },
-        "ci": {
-          "release": false
-        }
-      }
     }
   },
   "targetDefaults": {
