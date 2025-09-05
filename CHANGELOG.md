@@ -1,3 +1,13 @@
+## 0.0.6 (2025-09-05)
+
+### 🩹 Fixes
+
+- repo package.json ([7dd7fbe](https://github.com/Tomsons/ts-libs/commit/7dd7fbe))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.0.5 (2025-09-05)
 
 ### 🩹 Fixes
