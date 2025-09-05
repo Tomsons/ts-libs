@@ -5,6 +5,9 @@
   "references": [
     {
       "path": "./packages/queue-manager"
+    },
+    {
+      "path": "./packages/concrete-tasks"
     }
   ]
 }
