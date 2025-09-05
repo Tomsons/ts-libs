@@ -1,0 +1,13 @@
+{
+  "name": "@tomson/react-qm-sample",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "react-qm-sample"
+  },
+  "dependencies": {
+    "@tomson/queue-manager": "workspace:*",
+    "@tomson/react-queue-manager": "workspace:*",
+    "@tomson/concrete-tasks": "workspace:*"
+  }
+}

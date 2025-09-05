@@ -43,6 +43,8 @@ export interface TaskProgress {
     progress: number;
     /** Current status of the task */
     status: TaskStatus;
+    /** Timestamp of the progress update */
+    date: Date;
     /** Error details if task failed */
     error?: Error;
 }
@@ -115,6 +117,7 @@ export class QueueManager<T = unknown> {
             retryPolicy: task.retryPolicy ?? this.options.defaultRetryPolicy,
             maxRetries: task.maxRetries ?? this.options.maxRetries,
         });
+        this.notifyProgress(task.id, 0, TaskStatus.PENDING);
         this.processQueue();
     }
 
@@ -219,7 +222,6 @@ export class QueueManager<T = unknown> {
     private async executeTask(task: Task<T>): Promise<void> {
         const runningTask = this.running.get(task.id);
         if (!runningTask) return;
-
         try {
             await task.execute((progress) => this.notifyProgress(task.id, progress.progress, progress.status, progress.error));
             this.notifyProgress(task.id, 100, TaskStatus.COMPLETED);
@@ -253,7 +255,7 @@ export class QueueManager<T = unknown> {
         status: TaskStatus,
         error?: Error
     ): void {
-        const taskProgress: TaskProgress = {taskId, progress, status, error};
+        const taskProgress: TaskProgress = {taskId, progress, status, error, date: new Date()};
         this.listeners.forEach(listener => listener(taskProgress));
     }
 }

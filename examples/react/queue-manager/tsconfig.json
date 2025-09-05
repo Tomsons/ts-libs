@@ -1,0 +1,22 @@
+{
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "../../../packages/concrete-tasks"
+    },
+    {
+      "path": "../../../packages/react/queue-manager"
+    },
+    {
+      "path": "../../../packages/queue-manager"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ],
+  "extends": "../../../tsconfig.base.json"
+}

@@ -8,6 +8,12 @@
     },
     {
       "path": "./packages/concrete-tasks"
+    },
+    {
+      "path": "./packages/react/queue-manager"
+    },
+    {
+      "path": "./examples/react/queue-manager"
     }
   ]
 }

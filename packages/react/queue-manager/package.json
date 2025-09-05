@@ -1,6 +1,6 @@
 {
-  "name": "@tomson/concrete-tasks",
-  "version": "0.1.2",
+  "name": "@tomson/react-queue-manager",
+  "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "url": "https://github.com/Tomsons/ts-libs",
-    "directory": "packages/concrete-tasks"
+    "directory": "packages/react/queue-manager"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -23,7 +23,7 @@
     "dist",
     "!**/*.tsbuildinfo"
   ],
-  "peerDependencies": {
+  "dependencies": {
     "@tomson/queue-manager": "workspace:*"
   }
 }
