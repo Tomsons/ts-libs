@@ -1,3 +1,13 @@
+## 0.0.4 (2025-09-05)
+
+### 🩹 Fixes
+
+- public package ([93c3de9](https://github.com/Tomsons/ts-libs/commit/93c3de9))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.0.3 (2025-09-05)
 
 ### 🚀 Features
