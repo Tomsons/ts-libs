@@ -1,6 +1,6 @@
 {
   "name": "@tomson/react-queue-manager",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

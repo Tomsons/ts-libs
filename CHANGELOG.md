@@ -1,3 +1,13 @@
+## 0.2.0 (2025-09-06)
+
+### 🚀 Features
+
+- react queue manager ([fe06b6b](https://github.com/Tomsons/ts-libs/commit/fe06b6b))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.1.2 (2025-09-05)
 
 ### 🩹 Fixes
