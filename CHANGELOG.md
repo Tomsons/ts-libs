@@ -1,3 +1,13 @@
+## 0.2.2 (2025-09-06)
+
+### 🩹 Fixes
+
+- move all to tomsons ([27f3e72](https://github.com/Tomsons/ts-libs/commit/27f3e72))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.2.1 (2025-09-06)
 
 ### 🩹 Fixes
