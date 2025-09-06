@@ -1,3 +1,13 @@
+## 0.2.1 (2025-09-06)
+
+### 🩹 Fixes
+
+- file-upload progress ([39ad8cf](https://github.com/Tomsons/ts-libs/commit/39ad8cf))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.2.0 (2025-09-06)
 
 ### 🚀 Features
