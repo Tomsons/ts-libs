@@ -1,110 +1,37 @@
-# Tomsons
+# Tomson - A Collection of TypeScript Libraries
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Welcome to the Tomson monorepo! This project is a curated collection of high-quality, pure TypeScript packages designed to be robust, lightweight, and easy to integrate into any project. Our goal is to provide useful utilities and libraries that solve common problems with minimal third-party dependencies.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+## Philosophy
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+Each library within this monorepo is built with a core principle: **independence**. We strive to keep third-party dependencies to an absolute minimum. This results in smaller bundle sizes, fewer potential security vulnerabilities, and a more stable and predictable codebase for you to rely on.
 
-## Generate a library
+## What's Inside?
 
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
-```
+This repository is continuously evolving. Here are the packages currently available:
 
-## Run tasks
+| Package                                                     | Description                                                                                                            |
+| :---------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| [`@tomson/queue-manager`](./packages/queue-manager)         | A powerful and flexible queue manager for handling asynchronous tasks with concurrency, retries, and prioritization.     |
+| [`@tomson/react-queue-manager`](./packages/react/queue-manager) | Official React bindings for `@tomson/queue-manager`, providing hooks and a provider for seamless integration.        |
+| [`@tomson/concrete-tasks`](./packages/concrete-tasks)       | A set of pre-built, concrete task implementations (like `FileUploadTask`) to speed up integration with the queue manager. |
 
-To build the library use:
+## Roadmap & Contributing
 
-```sh
-npx nx build pkg1
-```
+This project is just getting started, and we have big plans! Our immediate roadmap includes creating bindings for other popular frameworks and libraries.
 
-To run any task with Nx use:
+- [ ] Vue.js Bindings
+- [ ] Svelte Bindings
+- [ ] Angular Bindings
+- [ ] More concrete task implementations
 
-```sh
-npx nx <target> <project-name>
-```
+**We are actively looking for volunteers!** If you're passionate about open-source, TypeScript, and building high-quality libraries, we would love your help to speed up development and bring more features to life. Your contributions, big or small, are incredibly valuable.
 
+## Community & Guidelines
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+We want to foster a welcoming and inclusive community. Please read our community guidelines before contributing.
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- **[Contributing Guide](./CONTRIBUTING.md)**: Learn how to set up the project, our coding standards, and how to submit pull requests.
+- **[Code of Conduct](./CODE_OF_CONDUCT.md)**: Our commitment to an open and welcoming environment.
+- **[License](./LICENSE)**: This project is licensed under the MIT License.
 
-## Versioning and releasing
-
-To version and release the library use
-
-```
-npx nx release
-```
-
-Pass `--dry-run` to see what would happen without actually releasing the library.
-
-[Learn more about Nx release &raquo;](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Keep TypeScript project references up to date
-
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
-
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
-
-```sh
-npx nx sync
-```
-
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
-
-```sh
-npx nx sync:check
-```
-
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
-
-## Set up CI!
-
-### Step 1
-
-To connect to Nx Cloud, run the following command:
-
-```sh
-npx nx connect
-```
-
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
-```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
