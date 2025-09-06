@@ -129,7 +129,8 @@ export class FileUploadTask<T, Result = FileUploadTaskResult<T>> implements Task
                         progress({
                             taskId,
                             progress: Math.min((bytesRead / totalSize) * 100, 100),
-                            status: 'RUNNING' as any
+                            status: 'RUNNING' as any,
+                            date: new Date()
                         });
 
                         controller.enqueue(value);
