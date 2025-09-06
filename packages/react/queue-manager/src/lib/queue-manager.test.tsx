@@ -2,7 +2,7 @@ import {act, renderHook} from '@testing-library/react';
 import {QueueManager} from './queue-manager';
 import {useQueueManager} from "./hooks/use-queue-manager";
 import {useTaskHistory} from "./hooks/use-task-history";
-import {Task, TaskStatus} from "@tomson/queue-manager";
+import {Task, TaskStatus} from "@tomsons/queue-manager";
 import {PropsWithChildren} from "react";
 
 const createTestTask = (id: string, shouldFail = false): Task<string> => ({

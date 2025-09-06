@@ -1,5 +1,5 @@
-import {useTaskHistory} from "@tomson/react-queue-manager";
-import {TaskProgress, TaskStatus} from "@tomson/queue-manager";
+import {useTaskHistory} from "@tomsons/react-queue-manager";
+import {TaskProgress, TaskStatus} from "@tomsons/queue-manager";
 
 type Props = {
     taskId: string;

@@ -1,5 +1,5 @@
 {
-  "name": "@tomson/react-queue-manager",
+  "name": "@tomsons/react-queue-manager",
   "version": "0.2.1",
   "type": "module",
   "main": "./dist/index.js",
@@ -24,6 +24,6 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@tomson/queue-manager": "workspace:*"
+    "@tomsons/queue-manager": "workspace:*"
   }
 }

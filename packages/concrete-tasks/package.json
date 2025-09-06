@@ -1,5 +1,5 @@
 {
-  "name": "@tomson/concrete-tasks",
+  "name": "@tomsons/concrete-tasks",
   "version": "0.2.1",
   "type": "module",
   "main": "./dist/index.js",
@@ -24,6 +24,6 @@
     "!**/*.tsbuildinfo"
   ],
   "peerDependencies": {
-    "@tomson/queue-manager": "workspace:*"
+    "@tomsons/queue-manager": "workspace:*"
   }
 }

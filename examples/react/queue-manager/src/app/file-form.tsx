@@ -1,6 +1,6 @@
-import {useQueueManager} from "@tomson/react-queue-manager";
+import {useQueueManager} from "@tomsons/react-queue-manager";
 import {ChangeEvent, useCallback, DragEvent, useState, useRef} from "react";
-import {FileUploadTask} from "@tomson/concrete-tasks";
+import {FileUploadTask} from "@tomsons/concrete-tasks";
 
 export const FileForm = () => {
     const queueManager = useQueueManager();

@@ -1,6 +1,6 @@
 # Concrete Tasks for Queue Manager
 
-A collection of pre-built, concrete task implementations designed to work seamlessly with `@tomson/queue-manager`. This library aims to speed up integration by providing ready-to-use solutions for common asynchronous operations.
+A collection of pre-built, concrete task implementations designed to work seamlessly with `@tomsons/queue-manager`. This library aims to speed up integration by providing ready-to-use solutions for common asynchronous operations.
 
 ## Installation
 
@@ -8,13 +8,13 @@ To use these tasks, you'll need both the core queue manager and this library.
 
 ```bash
 # With npm
-npm install @tomson/queue-manager @tomson/concrete-tasks
+npm install @tomsons/queue-manager @tomsons/concrete-tasks
 
 # With yarn
-yarn add @tomson/queue-manager @tomson/concrete-tasks
+yarn add @tomsons/queue-manager @tomsons/concrete-tasks
 
 # With pnpm
-pnpm add @tomson/queue-manager @tomson/concrete-tasks
+pnpm add @tomsons/queue-manager @tomsons/concrete-tasks
 ```
 
 ## Available Tasks
@@ -25,11 +25,11 @@ A robust task for handling file uploads with support for progress reporting and 
 
 #### Basic Usage
 
-Here's how to use `FileUploadTask` with `@tomson/queue-manager` and the native `fetch` API.
+Here's how to use `FileUploadTask` with `@tomsons/queue-manager` and the native `fetch` API.
 
 ```typescript
-import { QueueManager } from '@tomson/queue-manager';
-import { FileUploadTask } from '@tomson/concrete-tasks';
+import { QueueManager } from '@tomsons/queue-manager';
+import { FileUploadTask } from '@tomsons/concrete-tasks';
 
 const queueManager = new QueueManager({ concurrency: 2 });
 
@@ -61,7 +61,7 @@ The `streamConsumer` is the core of the `FileUploadTask`. It's a function you pr
 **With `fetch`:**
 
 ```typescript
-import { StreamConsumer } from '@tomson/concrete-tasks';
+import { StreamConsumer } from '@tomsons/concrete-tasks';
 
 const fetchUploader: StreamConsumer<Response> = async ({ stream, abortController }) => {
   return fetch('https://api.example.com/upload', {
@@ -76,7 +76,7 @@ const fetchUploader: StreamConsumer<Response> = async ({ stream, abortController
 **With `axios`:**
 
 ```typescript
-import { StreamConsumer } from '@tomson/concrete-tasks';
+import { StreamConsumer } from '@tomsons/concrete-tasks';
 import axios, { AxiosResponse } from 'axios';
 
 const axiosUploader: StreamConsumer<AxiosResponse> = async ({ stream, abortController }) => {

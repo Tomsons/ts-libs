@@ -108,19 +108,19 @@ importers:
 
   examples/react/queue-manager:
     dependencies:
-      '@tomson/concrete-tasks':
+      '@tomsons/concrete-tasks':
         specifier: workspace:*
         version: link:../../../packages/concrete-tasks
-      '@tomson/queue-manager':
+      '@tomsons/queue-manager':
         specifier: workspace:*
         version: link:../../../packages/queue-manager
-      '@tomson/react-queue-manager':
+      '@tomsons/react-queue-manager':
         specifier: workspace:*
         version: link:../../../packages/react/queue-manager
 
   packages/concrete-tasks:
     dependencies:
-      '@tomson/queue-manager':
+      '@tomsons/queue-manager':
         specifier: workspace:*
         version: link:../queue-manager
 
@@ -128,7 +128,7 @@ importers:
 
   packages/react/queue-manager:
     dependencies:
-      '@tomson/queue-manager':
+      '@tomsons/queue-manager':
         specifier: workspace:*
         version: link:../../queue-manager
 

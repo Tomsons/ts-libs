@@ -1,4 +1,4 @@
-import { QueueManager } from "@tomson/react-queue-manager";
+import { QueueManager } from "@tomsons/react-queue-manager";
 import { FileForm } from "./file-form";
 import { TaskHistory } from "./task-history";
 

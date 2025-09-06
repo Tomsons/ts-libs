@@ -16,7 +16,7 @@ A powerful and flexible queue manager for handling asynchronous tasks in TypeScr
 Here's a simple example of how to use the `QueueManager`.
 
 ```typescript
-import { QueueManager, Task, TaskStatus } from '@tomson/queue-manager';
+import { QueueManager, Task, TaskStatus } from '@tomsons/queue-manager';
 
 // 1. Create a QueueManager instance
 const queueManager = new QueueManager({ concurrency: 2 });
@@ -58,7 +58,7 @@ For more complex scenarios, you can encapsulate task logic within a class that i
 Here's an example of a `FileUploadTask` that uploads a file and reports progress.
 
 ```typescript
-import { QueueManager, Task, TaskProgress, TaskStatus } from '@tomson/queue-manager';
+import { QueueManager, Task, TaskProgress, TaskStatus } from '@tomsons/queue-manager';
 import fetch from 'node-fetch'; // or use browser's fetch
 
 // Custom class implementing the Task interface

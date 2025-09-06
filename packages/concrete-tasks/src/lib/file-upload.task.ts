@@ -1,4 +1,4 @@
-import type {Task, TaskProgress} from '@tomson/queue-manager';
+import type {Task, TaskProgress} from '@tomsons/queue-manager';
 
 /**
  * Properties passed to the stream consumer function

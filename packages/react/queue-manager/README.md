@@ -1,6 +1,6 @@
-# @tomson/react-queue-manager
+# @tomsons/react-queue-manager
 
-React bindings for `@tomson/queue-manager`. This library provides a React Provider and hooks to seamlessly integrate the powerful queueing capabilities into your React applications.
+React bindings for `@tomsons/queue-manager`. This library provides a React Provider and hooks to seamlessly integrate the powerful queueing capabilities into your React applications.
 
 ## Features
 
@@ -12,17 +12,17 @@ React bindings for `@tomson/queue-manager`. This library provides a React Provid
 
 ## Installation
 
-This package has a peer dependency on `@tomson/queue-manager`.
+This package has a peer dependency on `@tomsons/queue-manager`.
 
 ```bash
 # With npm
-npm install @tomson/queue-manager @tomson/react-queue-manager
+npm install @tomsons/queue-manager @tomsons/react-queue-manager
 
 # With yarn
-yarn add @tomson/queue-manager @tomson/react-queue-manager
+yarn add @tomsons/queue-manager @tomsons/react-queue-manager
 
 # With pnpm
-pnpm add @tomson/queue-manager @tomson/react-queue-manager
+pnpm add @tomsons/queue-manager @tomsons/react-queue-manager
 ```
 
 ## How to Use
@@ -33,7 +33,7 @@ Wrap your application (or the relevant part of it) with the `QueueManager` provi
 
 ```typescriptreact
 // In your App.tsx or equivalent
-import { QueueManager } from '@tomson/react-queue-manager';
+import { QueueManager } from '@tomsons/react-queue-manager';
 import { MyAppComponent } from './MyAppComponent';
 
 function App() {
@@ -52,8 +52,8 @@ function App() {
 This hook gives you access to the core `QueueManager` instance, which you can use to enqueue tasks.
 
 ```typescriptreact
-import { useQueueManager } from '@tomson/react-queue-manager';
-import { Task } from '@tomson/queue-manager';
+import { useQueueManager } from '@tomsons/react-queue-manager';
+import { Task } from '@tomsons/queue-manager';
 
 const MyTaskComponent = () => {
   const queueManager = useQueueManager();
@@ -78,7 +78,7 @@ const MyTaskComponent = () => {
 This hook provides access to the task history and functions to manage it. It returns an object with `history`, `clearHistory`, and `removeTaskFromHistory`.
 
 ```typescriptreact
-import { useTaskHistory } from '@tomson/react-queue-manager';
+import { useTaskHistory } from '@tomsons/react-queue-manager';
 
 const TaskHistoryDisplay = () => {
   const { history, clearHistory, removeTaskFromHistory } = useTaskHistory();
@@ -118,4 +118,4 @@ A fully functional example demonstrating file uploads with progress bars and his
 
 ## Running unit tests
 
-Run `nx test @tomson/react-queue-manager` to execute the unit tests via [Vitest](https://vitest.dev/).
+Run `nx test @tomsons/react-queue-manager` to execute the unit tests via [Vitest](https://vitest.dev/).

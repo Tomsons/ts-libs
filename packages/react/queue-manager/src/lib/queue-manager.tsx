@@ -1,5 +1,5 @@
 import {PropsWithChildren, useCallback, useEffect, useRef, useState} from "react";
-import {QueueManager as CoreQueueManager, QueueOptions, TaskProgress, TaskStatus} from '@tomson/queue-manager';
+import {QueueManager as CoreQueueManager, QueueOptions, TaskProgress, TaskStatus} from '@tomsons/queue-manager';
 import {QueueManagerContext} from "./context/queue-manager.context";
 
 type Props = {
