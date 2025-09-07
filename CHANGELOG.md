@@ -1,3 +1,46 @@
+## 0.3.0 (2025-09-07)
+
+### 🚀 Features
+
+- try push ([b0dce2e](https://github.com/Tomsons/ts-libs/commit/b0dce2e))
+- try push ([7ea5a6a](https://github.com/Tomsons/ts-libs/commit/7ea5a6a))
+- introduce file upload task ([#2](https://github.com/Tomsons/ts-libs/pull/2))
+- react queue manager ([fe06b6b](https://github.com/Tomsons/ts-libs/commit/fe06b6b))
+- readme ([1c286d7](https://github.com/Tomsons/ts-libs/commit/1c286d7))
+
+### 🩹 Fixes
+
+- nx config ([df31c79](https://github.com/Tomsons/ts-libs/commit/df31c79))
+- publishing ([49bef8a](https://github.com/Tomsons/ts-libs/commit/49bef8a))
+- try release package ([49c2cda](https://github.com/Tomsons/ts-libs/commit/49c2cda))
+- try release ([1eddf95](https://github.com/Tomsons/ts-libs/commit/1eddf95))
+- try PR ([#1](https://github.com/Tomsons/ts-libs/pull/1))
+- try push on protected ([12f87bd](https://github.com/Tomsons/ts-libs/commit/12f87bd))
+- try gh token ([866a770](https://github.com/Tomsons/ts-libs/commit/866a770))
+- npm token ([cf1cc9c](https://github.com/Tomsons/ts-libs/commit/cf1cc9c))
+- npm token ([7c8f7ef](https://github.com/Tomsons/ts-libs/commit/7c8f7ef))
+- public package ([93c3de9](https://github.com/Tomsons/ts-libs/commit/93c3de9))
+- deploy public access ([dc343af](https://github.com/Tomsons/ts-libs/commit/dc343af))
+- build before publishing ([cee0c8d](https://github.com/Tomsons/ts-libs/commit/cee0c8d))
+- repo package.json ([7dd7fbe](https://github.com/Tomsons/ts-libs/commit/7dd7fbe))
+- doc ([cfe9c69](https://github.com/Tomsons/ts-libs/commit/cfe9c69))
+- license and repo ([ae168cf](https://github.com/Tomsons/ts-libs/commit/ae168cf))
+- file-upload progress ([39ad8cf](https://github.com/Tomsons/ts-libs/commit/39ad8cf))
+- move all to tomsons ([27f3e72](https://github.com/Tomsons/ts-libs/commit/27f3e72))
+- **ci:** cc ([b67ded1](https://github.com/Tomsons/ts-libs/commit/b67ded1))
+- **ci:** skip publish ([95dc283](https://github.com/Tomsons/ts-libs/commit/95dc283))
+- **ci:** try releasing ([eec3b3b](https://github.com/Tomsons/ts-libs/commit/eec3b3b))
+- **ci:** publishing ([038f973](https://github.com/Tomsons/ts-libs/commit/038f973))
+- **ci:** release wf ([535d314](https://github.com/Tomsons/ts-libs/commit/535d314))
+- **ci:** try trigger release ([c61612c](https://github.com/Tomsons/ts-libs/commit/c61612c))
+- **ci:** set env ([d29d62f](https://github.com/Tomsons/ts-libs/commit/d29d62f))
+- **upload:** task implementation ([bc9ae88](https://github.com/Tomsons/ts-libs/commit/bc9ae88))
+
+### ❤️ Thank You
+
+- Thomas Zayouna @Tomsons
+- tom @Tomsons
+
 ## 0.2.2 (2025-09-06)
 
 ### 🩹 Fixes
