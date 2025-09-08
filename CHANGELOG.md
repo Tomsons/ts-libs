@@ -1,3 +1,13 @@
+## 0.3.1 (2025-09-08)
+
+### 🩹 Fixes
+
+- tags ([ec826b7](https://github.com/Tomsons/ts-libs/commit/ec826b7))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.3.0 (2025-09-07)
 
 ### 🚀 Features
