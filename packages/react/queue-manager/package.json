@@ -25,5 +25,20 @@
   ],
   "dependencies": {
     "@tomsons/queue-manager": "workspace:*"
+  },
+  "tags": {
+    "typescript": true,
+    "react": true,
+    "queue": true,
+    "manager": true,
+    "task": true,
+    "job": true,
+    "scheduler": true,
+    "asynchronous": true,
+    "async": true,
+    "concurrency": true,
+    "control": true,
+    "flow": true,
+    "flow-control": true
   }
 }

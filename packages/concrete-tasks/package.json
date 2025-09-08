@@ -25,5 +25,19 @@
   ],
   "peerDependencies": {
     "@tomsons/queue-manager": "workspace:*"
+  },
+  "tags": {
+    "typescript": true,
+    "queue": true,
+    "manager": true,
+    "task": true,
+    "job": true,
+    "scheduler": true,
+    "asynchronous": true,
+    "async": true,
+    "concurrency": true,
+    "control": true,
+    "flow": true,
+    "flow-control": true
   }
 }
