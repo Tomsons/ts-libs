@@ -1,3 +1,13 @@
+## 0.3.2 (2025-09-08)
+
+### 🩹 Fixes
+
+- replaced tags with keywords ([fc57cef](https://github.com/Tomsons/ts-libs/commit/fc57cef))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.3.1 (2025-09-08)
 
 ### 🩹 Fixes
