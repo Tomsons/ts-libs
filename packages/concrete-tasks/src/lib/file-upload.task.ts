@@ -1,15 +1,15 @@
-import type {Task, TaskProgress} from '@tomsons/queue-manager';
+import type { Task, TaskProgress } from '@tomsons/queue-manager';
 
 /**
  * Properties passed to the stream consumer function
  * @template T The type of data that will be returned by the consumer
  */
 type StreamConsumerProps = {
-    /** The ReadableStream containing the file data */
-    stream: ReadableStream;
-    /** AbortController instance that can be used to cancel the upload */
-    abortController: AbortController;
-}
+	/** The ReadableStream containing the file data */
+	stream: ReadableStream;
+	/** AbortController instance that can be used to cancel the upload */
+	abortController: AbortController;
+};
 
 /**
  * Function that consumes a ReadableStream and performs the upload
@@ -18,8 +18,8 @@ type StreamConsumerProps = {
 type StreamConsumer<T> = (props: StreamConsumerProps) => Promise<T>;
 
 type FileUploadTaskResult<T> = {
-    data: T;
-}
+	data: T;
+};
 
 /**
  * Properties for creating a FileUploadTask
@@ -60,14 +60,13 @@ type FileUploadTaskResult<T> = {
  * ```
  */
 export type FileUploadTaskProps<T> = {
-    /** Unique identifier for the task */
-    id: string;
-    /** File to be uploaded */
-    file: File
-    /** Function that performs the actual upload */
-    streamConsumer: StreamConsumer<T>;
+	/** Unique identifier for the task */
+	id: string;
+	/** File to be uploaded */
+	file: File;
+	/** Function that performs the actual upload */
+	streamConsumer: StreamConsumer<T>;
 } & Pick<Task<T>, 'priority' | 'retryPolicy' | 'maxRetries' | 'timeout'>;
-
 
 /**
  * Task implementation for uploading files with progress tracking
@@ -94,68 +93,67 @@ export type FileUploadTaskProps<T> = {
  * ```
  */
 export class FileUploadTask<T, Result = FileUploadTaskResult<T>> implements Task<Result> {
-    public readonly id: string;
-    public readonly priority?;
-    public readonly maxRetries?;
-    public readonly retryPolicy?;
-    public readonly timeout?;
-    private readonly streamConsumer: StreamConsumer<T>;
-    private readonly file: File;
-    private abortController?: AbortController;
-    constructor({ id, streamConsumer, file, priority, maxRetries, retryPolicy, timeout }: FileUploadTaskProps<T>) {
-        this.id = id;
-        this.streamConsumer = streamConsumer;
-        this.file = file;
-        this.priority = priority;
-        this.maxRetries = maxRetries;
-        this.retryPolicy = retryPolicy;
-        this.timeout = timeout;
-    }
+	public readonly id: string;
+	public readonly priority?;
+	public readonly maxRetries?;
+	public readonly retryPolicy?;
+	public readonly timeout?;
+	private readonly streamConsumer: StreamConsumer<T>;
+	private readonly file: File;
+	private abortController?: AbortController;
+	constructor({ id, streamConsumer, file, priority, maxRetries, retryPolicy, timeout }: FileUploadTaskProps<T>) {
+		this.id = id;
+		this.streamConsumer = streamConsumer;
+		this.file = file;
+		this.priority = priority;
+		this.maxRetries = maxRetries;
+		this.retryPolicy = retryPolicy;
+		this.timeout = timeout;
+	}
 
-    public execute = async (progress: (progress: TaskProgress) => void): Promise<Result> => {
-        this.abortController = new AbortController();
-        const stream = this.file.stream();
-        const totalSize = this.file.size;
-        const taskId = this.id;
-        const abortSignal = this.abortController.signal;
-        let bytesRead = 0;
+	public execute = async (progress: (progress: TaskProgress) => void): Promise<Result> => {
+		this.abortController = new AbortController();
+		const stream = this.file.stream();
+		const totalSize = this.file.size;
+		const taskId = this.id;
+		const abortSignal = this.abortController.signal;
+		let bytesRead = 0;
 
-        const reader = stream.getReader();
-        const transformedStream = new ReadableStream({
-            async start(controller) {
-                try {
-                    while (!abortSignal.aborted) {
-                        const {done, value} = await reader.read();
-                        if (done) break;
+		const reader = stream.getReader();
+		const transformedStream = new ReadableStream({
+			async start(controller) {
+				try {
+					while (!abortSignal.aborted) {
+						const { done, value } = await reader.read();
+						if (done) break;
 
-                        bytesRead += value.length;
-                        progress({
-                            taskId,
-                            progress: Math.min((bytesRead / totalSize) * 100, 100),
-                            status: 'RUNNING' as any,
-                            date: new Date()
-                        });
+						bytesRead += value.length;
+						progress({
+							taskId,
+							progress: Math.min((bytesRead / totalSize) * 100, 100),
+							status: 'RUNNING' as any,
+							date: new Date(),
+						});
 
-                        controller.enqueue(value);
-                    }
-                    controller.close();
-                } catch (error) {
-                    controller.error(error);
-                } finally {
-                    reader.releaseLock();
-                }
-            }
-        });
+						controller.enqueue(value);
+					}
+					controller.close();
+				} catch (error) {
+					controller.error(error);
+				} finally {
+					reader.releaseLock();
+				}
+			},
+		});
 
-        const data = await this.streamConsumer({
-            stream: transformedStream,
-            abortController: this.abortController
-        });
-        return {data} as Result;
-    }
+		const data = await this.streamConsumer({
+			stream: transformedStream,
+			abortController: this.abortController,
+		});
+		return { data } as Result;
+	};
 
-    public cancel = (): void => {
-        this.abortController?.abort();
-    }
+	public cancel = (): void => {
+		this.abortController?.abort();
+	};
 }
-
