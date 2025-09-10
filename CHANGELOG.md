@@ -1,3 +1,13 @@
+## 0.3.3 (2025-09-10)
+
+### 🩹 Fixes
+
+- task cancellation and retry ([4de2da1](https://github.com/Tomsons/ts-libs/commit/4de2da1))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.3.2 (2025-09-08)
 
 ### 🩹 Fixes
