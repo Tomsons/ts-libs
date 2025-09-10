@@ -72,34 +72,6 @@ describe('QueueManager Integration Tests', () => {
     await stopTestServer();
   });
 
-  it('should execute a simple POST request task', async () => {
-    const queueManager = new QueueManager({ concurrency: 1 });
-    const progressSpy = vi.fn();
-    queueManager.onProgress(progressSpy);
-
-    const task: Task<Response> = {
-      id: 'post-task-1',
-      execute: () => fetch(`${serverUrl}/simple-post`, {
-        method: 'POST',
-        body: JSON.stringify({ test: 'data' }),
-        headers: { 'Content-Type': 'application/json' },
-      }).catch(err => {
-          throw err;
-      }),
-    };
-
-    queueManager.enqueue(task);
-    await queueManager.waitForCompletion();
-
-    const completedCall = progressSpy.mock.calls.find(c => c[0].status === TaskStatus.COMPLETED);
-    expect(completedCall).toBeDefined();
-    expect(completedCall![0]).toMatchObject({
-      taskId: 'post-task-1',
-      status: TaskStatus.COMPLETED,
-      progress: 100,
-    });
-  });
-
   it('should handle failed tasks and allow reprocessing', async () => {
     const queueManager = new QueueManager({ concurrency: 1, maxRetries: 1 });
     const progressSpy = vi.fn();
@@ -131,6 +103,34 @@ describe('QueueManager Integration Tests', () => {
     const completedCall = progressSpy.mock.calls.find(c => c[0].status === TaskStatus.COMPLETED);
     expect(completedCall).toBeDefined();
     expect(completedCall![0].taskId).toBe('failing-task-1');
+  });
+
+  it('should execute a simple POST request task', async () => {
+    const queueManager = new QueueManager({ concurrency: 1 });
+    const progressSpy = vi.fn();
+    queueManager.onProgress(progressSpy);
+
+    const task: Task<Response> = {
+      id: 'post-task-1',
+      execute: () => fetch(`${serverUrl}/simple-post`, {
+        method: 'POST',
+        body: JSON.stringify({ test: 'data' }),
+        headers: { 'Content-Type': 'application/json' },
+      }).catch(err => {
+          throw err;
+      }),
+    };
+
+    queueManager.enqueue(task);
+    await queueManager.waitForCompletion();
+
+    const completedCall = progressSpy.mock.calls.find(c => c[0].status === TaskStatus.COMPLETED);
+    expect(completedCall).toBeDefined();
+    expect(completedCall![0]).toMatchObject({
+      taskId: 'post-task-1',
+      status: TaskStatus.COMPLETED,
+      progress: 100,
+    });
   });
 
   it('should execute a file upload task and report progress', async () => {

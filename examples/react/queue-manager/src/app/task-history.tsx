@@ -28,8 +28,8 @@ function TaskHistoryItem({taskId, progresses, onDelete}: Props) {
     const lastProgress = progresses[progresses.length - 1];
     if (!lastProgress) return null;
 
-    const colorClass = STATUS_COLORS[lastProgress.status] || 'bg-gray-500';
-    const progressPercentage = lastProgress.status === TaskStatus.COMPLETED ? 100 : lastProgress.progress;
+    const colorClass = STATUS_COLORS[lastProgress.error ? TaskStatus.FAILED : lastProgress.status] || 'bg-gray-500';
+    const progressPercentage = lastProgress.status === TaskStatus.COMPLETED || lastProgress.error ? 100 : lastProgress.progress;
     const canBeDeleted = lastProgress.status === TaskStatus.COMPLETED || lastProgress.status === TaskStatus.FAILED;
 
     return (
@@ -55,8 +55,8 @@ function TaskHistoryItem({taskId, progresses, onDelete}: Props) {
                     style={{width: `${progressPercentage}%`}}
                 ></div>
             </div>
-            {lastProgress.status === TaskStatus.FAILED && lastProgress.error && (
-                <p className="text-red-600 text-xs mt-2">Error: {lastProgress.error.message}</p>
+            {(lastProgress.status === TaskStatus.FAILED || lastProgress.error) && (
+                <p className="text-red-600 text-xs mt-2">Error: {lastProgress?.error?.message}</p>
             )}
         </div>
     );

@@ -14,14 +14,19 @@ export const FileForm = () => {
             const task = new FileUploadTask({
                 id: `${file.name}-${Date.now()}`,
                 file,
+                timeout: 500,
                 streamConsumer: async ({stream, abortController}) => {
                     // In a real app, you'd upload to your server.
                     // We'll simulate an upload that takes 2 seconds.
-                    await new Promise(resolve => setTimeout(resolve, 2000));
-                    if (abortController.signal.aborted) {
-                        throw new Error('Upload cancelled');
-                    }
-                    return {url: `https://example.com/uploads/${file.name}`};
+                    await new Promise((resolve, reject) => {
+                      const timeout = setTimeout(() => {
+                        resolve({url: `https://example.com/uploads/${file.name}`});
+                      }, 2000)
+                      abortController.signal.addEventListener('abort', () => {
+                        clearTimeout(timeout);
+                        reject(new Error('Upload aborted'));
+                      });
+                    });
                 }
             });
             queueManager.enqueue(task);

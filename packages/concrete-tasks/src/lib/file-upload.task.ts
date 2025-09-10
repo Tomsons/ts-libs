@@ -66,7 +66,7 @@ export type FileUploadTaskProps<T> = {
     file: File
     /** Function that performs the actual upload */
     streamConsumer: StreamConsumer<T>;
-} & Pick<Task<T>, 'priority' | 'retryPolicy' | 'maxRetries'>;
+} & Pick<Task<T>, 'priority' | 'retryPolicy' | 'maxRetries' | 'timeout'>;
 
 
 /**
@@ -98,19 +98,22 @@ export class FileUploadTask<T, Result = FileUploadTaskResult<T>> implements Task
     public readonly priority?;
     public readonly maxRetries?;
     public readonly retryPolicy?;
+    public readonly timeout?;
     private readonly streamConsumer: StreamConsumer<T>;
     private readonly file: File;
-    private readonly abortController = new AbortController();
-    constructor({ id, streamConsumer, file, priority, maxRetries, retryPolicy }: FileUploadTaskProps<T>) {
+    private abortController?: AbortController;
+    constructor({ id, streamConsumer, file, priority, maxRetries, retryPolicy, timeout }: FileUploadTaskProps<T>) {
         this.id = id;
         this.streamConsumer = streamConsumer;
         this.file = file;
         this.priority = priority;
         this.maxRetries = maxRetries;
         this.retryPolicy = retryPolicy;
+        this.timeout = timeout;
     }
 
     public execute = async (progress: (progress: TaskProgress) => void): Promise<Result> => {
+        this.abortController = new AbortController();
         const stream = this.file.stream();
         const totalSize = this.file.size;
         const taskId = this.id;
@@ -152,7 +155,7 @@ export class FileUploadTask<T, Result = FileUploadTaskResult<T>> implements Task
     }
 
     public cancel = (): void => {
-        this.abortController.abort();
+        this.abortController?.abort();
     }
 }
 

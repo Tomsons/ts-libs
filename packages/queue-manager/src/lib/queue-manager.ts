@@ -1,3 +1,5 @@
+import { TaskTimeoutError } from './errors.js'
+
 /**
  * Interface representing a task that can be executed by the queue manager
  * @template T The return type of the task execution
@@ -15,6 +17,8 @@ export interface Task<T = unknown> {
     retryPolicy?: RetryPolicy;
     /** Function to cancel the task execution */
     cancel?: () => void;
+    /** Optional timeout for the task in milliseconds */
+    timeout?: number;
 }
 
 /**
@@ -204,13 +208,8 @@ export class QueueManager<T = unknown> {
         if (!task) return;
 
         this.running.set(task.id, {task, attempts: 0});
-        this.notifyProgress(task.id, 0, TaskStatus.RUNNING);
 
-        try {
-            await this.executeTask(task);
-        } catch (error) {
-            console.error(`Task ${task.id} failed:`, error);
-        }
+        await this.executeTask(task);
 
         this.processQueue();
     }
@@ -220,13 +219,20 @@ export class QueueManager<T = unknown> {
      * @param task Task to execute
      */
     private async executeTask(task: Task<T>): Promise<void> {
+        this.notifyProgress(task.id, 0, TaskStatus.RUNNING);
         const runningTask = this.running.get(task.id);
         if (!runningTask) return;
         try {
-            await task.execute((progress) => this.notifyProgress(task.id, progress.progress, progress.status, progress.error));
+            if (task.timeout && !isNaN(task.timeout)) {
+                await this.executeTaskWithTimeout(task);
+            } else {
+                await task.execute((progress) => {
+                    this.notifyProgress(task.id, progress.progress, progress.status, progress.error);
+                });
+            }
             this.notifyProgress(task.id, 100, TaskStatus.COMPLETED);
-            this.running.delete(task.id);
         } catch (error) {
+          console.error(`Task ${task.id} failed:`, error);
             const {attempts} = runningTask;
             if (attempts < (task.maxRetries ?? this.options.maxRetries!)) {
                 const delay = task.retryPolicy!.calculateDelay(attempts);
@@ -238,9 +244,30 @@ export class QueueManager<T = unknown> {
 
             this.notifyProgress(task.id, 0, TaskStatus.FAILED, error as Error);
             this.failedQueue.push(task);
-            this.running.delete(task.id);
+        } finally {
+          this.running.delete(task.id);
         }
     }
+
+  /**
+   * Executes a task with a timeout
+   * @param task
+   * @private
+   */
+  private async executeTaskWithTimeout(task: Task<T>): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        task.cancel?.();
+        reject(new TaskTimeoutError({taskId: task.id, timeout: task.timeout!}));
+      }, task.timeout);
+      task.execute((progress) => {
+        this.notifyProgress(task.id, progress.progress, progress.status, progress.error);
+      }).then(() => resolve()).catch(() => {
+        clearTimeout(timeout);
+        reject();
+      });
+    })
+  }
 
     /**
      * Notifies all registered listeners of task progress
