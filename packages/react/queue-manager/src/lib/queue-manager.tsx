@@ -1,5 +1,5 @@
-import {PropsWithChildren, useCallback, useEffect, useRef, useState} from "react";
-import {QueueManager as CoreQueueManager, QueueOptions, TaskProgress, TaskStatus} from '@tomsons/queue-manager';
+import {type PropsWithChildren, useCallback, useEffect, useRef, useState} from "react";
+import {QueueManager as CoreQueueManager, type QueueOptions, type TaskProgress, TaskStatus} from '@tomsons/queue-manager';
 import {QueueManagerContext} from "./context/queue-manager.context";
 
 type Props = {
@@ -28,7 +28,7 @@ export function QueueManager({children, autoClearHistoryDelay, ...managerProps}:
     useEffect(() => {
         const unregister = manager.current.onProgress(item => {
             historyManager.current.enqueue({
-                id: item.taskId + '-' + Date.now(),
+                id: `${item.taskId}-${Date.now()}`,
                 execute: async () => {
                     setHistory(prev => {
                         if (!prev[item.taskId]) {
@@ -39,7 +39,7 @@ export function QueueManager({children, autoClearHistoryDelay, ...managerProps}:
                         return {...prev};
                     })
 
-                    if ((item.status === TaskStatus.COMPLETED || item.status === TaskStatus.FAILED) && autoClearHistoryDelay && !isNaN(autoClearHistoryDelay)) {
+                    if ((item.status === TaskStatus.COMPLETED || item.status === TaskStatus.FAILED) && autoClearHistoryDelay && !Number.isNaN(autoClearHistoryDelay)) {
                         setTimeout(() => {
                             removeTaskFromHistory(item.taskId);
                         }, autoClearHistoryDelay);

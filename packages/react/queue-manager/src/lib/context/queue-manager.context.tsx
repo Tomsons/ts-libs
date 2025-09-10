@@ -1,5 +1,5 @@
-import {createContext, Dispatch, SetStateAction} from "react";
-import {QueueManager, TaskProgress} from "@tomsons/queue-manager";
+import {createContext, type Dispatch, type SetStateAction} from "react";
+import type {QueueManager, TaskProgress} from "@tomsons/queue-manager";
 
 type QueueManagerContextType = {
     manager: QueueManager;

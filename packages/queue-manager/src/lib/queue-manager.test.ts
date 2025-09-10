@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
-import { createServer, Server, IncomingMessage, ServerResponse } from 'http';
+import { createServer, type Server, type IncomingMessage, type ServerResponse } from 'http';
 import { Readable } from 'stream';
-import {QueueManager, Task, TaskStatus} from './queue-manager.js';
+import {QueueManager, type Task, TaskStatus} from './queue-manager.js';
 
 let server: Server;
 let serverUrl: string;
@@ -18,6 +18,7 @@ const startTestServer = () => {
           return;
         }
         let body = '';
+        // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
         req.on('data', (chunk) => (body += chunk.toString()));
         req.on('end', () => {
           res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -160,7 +161,7 @@ describe('QueueManager Integration Tests', () => {
           },
         });
 
-        // @ts-ignore: ReadableStream is compatible with BodyInit in Node.js fetch
+        // @ts-expect-error: ReadableStream is compatible with BodyInit in Node.js fetch
         return fetch(`${serverUrl}/upload`, { method: 'POST', body: stream, duplex: 'half' });
       },
     };

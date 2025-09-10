@@ -1,5 +1,5 @@
 import {useQueueManager} from "@tomsons/react-queue-manager";
-import {ChangeEvent, useCallback, DragEvent, useState, useRef} from "react";
+import {type ChangeEvent, useCallback, type DragEvent, useState, useRef} from "react";
 import {FileUploadTask} from "@tomsons/concrete-tasks";
 
 export const FileForm = () => {
@@ -65,6 +65,8 @@ export const FileForm = () => {
     return (
         <div className="bg-gray-100 p-6 rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold mb-4 text-center">Upload Files</h2>
+            {/** biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+            {/** biome-ignore lint/a11y/noStaticElementInteractions: <explanation> */}
             <div
                 className={dropzoneClasses}
                 onDragOver={handleDragOver}

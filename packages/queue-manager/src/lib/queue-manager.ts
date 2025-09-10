@@ -65,7 +65,7 @@ export interface RetryPolicy {
  * Default retry policy using exponential backoff strategy
  */
 export const ExponentialBackoff: RetryPolicy = {
-    calculateDelay: (attempt: number) => Math.min(1000 * Math.pow(2, attempt), 30000),
+    calculateDelay: (attempt: number) => Math.min(1000 * 2 ** attempt, 30000),
 };
 
 /**
@@ -129,7 +129,9 @@ export class QueueManager<T = unknown> {
      * Re-queues all tasks from the failed queue for processing.
      */
     public reprocessFailedTasks(): void {
-        this.failedQueue.forEach(task => this.enqueue(task));
+        this.failedQueue.forEach(task => {
+          this.enqueue(task)
+        });
         this.failedQueue = [];
     }
 
@@ -235,7 +237,7 @@ export class QueueManager<T = unknown> {
           console.error(`Task ${task.id} failed:`, error);
             const {attempts} = runningTask;
             if (attempts < (task.maxRetries ?? this.options.maxRetries!)) {
-                const delay = task.retryPolicy!.calculateDelay(attempts);
+                const delay = task.retryPolicy?.calculateDelay(attempts);
                 this.notifyProgress(task.id, 0, TaskStatus.RUNNING, error as Error); // Notify as running with error for retry
                 await new Promise(resolve => setTimeout(resolve, delay));
                 this.running.set(task.id, {task, attempts: attempts + 1});
@@ -283,6 +285,8 @@ export class QueueManager<T = unknown> {
         error?: Error
     ): void {
         const taskProgress: TaskProgress = {taskId, progress, status, error, date: new Date()};
-        this.listeners.forEach(listener => listener(taskProgress));
+        this.listeners.forEach(listener => {
+          listener(taskProgress)
+        });
     }
 }

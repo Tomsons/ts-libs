@@ -2,8 +2,8 @@ import {act, renderHook} from '@testing-library/react';
 import {QueueManager} from './queue-manager';
 import {useQueueManager} from "./hooks/use-queue-manager";
 import {useTaskHistory} from "./hooks/use-task-history";
-import {Task, TaskStatus} from "@tomsons/queue-manager";
-import {PropsWithChildren} from "react";
+import {type Task, TaskStatus} from "@tomsons/queue-manager";
+import type {PropsWithChildren} from "react";
 
 const createTestTask = (id: string, shouldFail = false): Task<string> => ({
     id,

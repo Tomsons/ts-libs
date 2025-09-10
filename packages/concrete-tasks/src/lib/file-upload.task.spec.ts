@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { FileUploadTask, FileUploadTaskProps } from './file-upload.task.js';
+import { FileUploadTask, type FileUploadTaskProps } from './file-upload.task.js';
 
 // Mock the File API for Node.js environment
 class MockFile {

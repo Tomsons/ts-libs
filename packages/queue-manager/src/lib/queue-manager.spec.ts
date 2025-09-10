@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it, Mock, vi } from 'vitest'
-import { QueueManager, Task, TaskStatus } from './queue-manager.js'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
+import { QueueManager, type Task, TaskStatus } from './queue-manager.js'
 import { TaskTimeoutError } from './errors.js'
 
 interface CreateTestTaskOptions {
