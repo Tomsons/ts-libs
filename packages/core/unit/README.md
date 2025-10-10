@@ -236,18 +236,6 @@ const retryTask = <T>(task: Task<T>, maxRetries: number): Task<T> =>
   });
 ```
 
-## Factory Functions
-
-For convenience, all factory functions are also available through the `UnitFactories` object:
-
-```typescript
-import { UnitFactories } from '@tomson/unit';
-
-const optional = UnitFactories.Optional.some(42);
-const result = UnitFactories.Result.ok("success");
-const task = UnitFactories.Task.of(() => Promise.resolve(100));
-```
-
 ## TypeScript Support
 
 This library is written in TypeScript and provides comprehensive type definitions:
