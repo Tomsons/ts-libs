@@ -1,3 +1,13 @@
+## 0.4.2 (2025-10-10)
+
+### 🩹 Fixes
+
+- **unit:** add tags ([5aa5251](https://github.com/Tomsons/ts-libs/commit/5aa5251))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.4.1 (2025-10-10)
 
 ### 🩹 Fixes
