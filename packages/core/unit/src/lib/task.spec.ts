@@ -101,7 +101,7 @@ describe('Task', () => {
 		});
 
 		it('should not transform failed task result', async () => {
-			const task = Task.of(() => Promise.reject(new Error('Original error')));
+			const task = Task.of((): Promise<number> => Promise.reject(new Error('Original error')));
 			const mappedTask = task.map((x) => (x as number) * 2);
 
 			const result = await (mappedTask as Task<number>).run();
@@ -162,7 +162,7 @@ describe('Task', () => {
 		});
 
 		it('should return error if value task fails', async () => {
-			const valueTask = Task.of(() => Promise.reject(new Error('Value error')));
+			const valueTask = Task.of((): Promise<number> => Promise.reject(new Error('Value error')));
 			const fnTask = Task.of(() => Promise.resolve((x: number) => x * 2));
 
 			const result = await (valueTask.apply(fnTask) as Task<number>).run();
@@ -171,8 +171,8 @@ describe('Task', () => {
 		});
 
 		it('should return error if function task fails', async () => {
-			const valueTask = Task.of(() => Promise.resolve(5));
-			const fnTask = Task.of(() => Promise.reject(new Error('Function error')));
+			const valueTask = Task.of((): Promise<number> => Promise.resolve(5));
+      const fnTask = Task.of((): Promise<(num: number) => number> => Promise.reject(new Error('Function error')));
 
 			const result = await (valueTask.apply(fnTask) as Task<number>).run();
 			expect(result.isErr()).toBe(true);
@@ -180,8 +180,8 @@ describe('Task', () => {
 		});
 
 		it('should return first error if both tasks fail', async () => {
-			const valueTask = Task.of(() => Promise.reject(new Error('Value error')));
-			const fnTask = Task.of(() => Promise.reject(new Error('Function error')));
+			const valueTask = Task.of((): Promise<number> => Promise.reject(new Error('Value error')));
+			const fnTask = Task.of((): Promise<(num: number) => number> => Promise.reject(new Error('Function error')));
 
 			const result = await (valueTask.apply(fnTask) as Task<number>).run();
 			expect(result.isErr()).toBe(true);
@@ -225,7 +225,7 @@ describe('Task', () => {
 
 		it('should propagate error from second task', async () => {
 			const task1 = Task.of(() => Promise.resolve(5));
-			const task2 = () => Task.of(() => Promise.reject(new Error('Second task failed')));
+			const task2 = () => Task.of((): Promise<number> => Promise.reject(new Error('Second task failed')));
 
 			const result = await (task1.andThen(task2) as Task<number>).run();
 			expect(result.isErr()).toBe(true);

@@ -50,7 +50,7 @@ export class Task<T> implements Unit<T> {
 	 * });
 	 * ```
 	 */
-	static of<T>(task: () => Promise<T>): Task<T> {
+	static of<T>(task: (() => Promise<T>) | (() => T)): Task<T> {
 		return new Task(async () => {
 			return task();
 		});
@@ -213,7 +213,7 @@ export class Task<T> implements Unit<T> {
 	 * }
 	 * ```
 	 */
-	public asOptional(): Promise<Optional<T>> {
+	public async asOptional(): Promise<Optional<T>> {
 		return this.run().then((result) => result.asOptional());
 	}
 
