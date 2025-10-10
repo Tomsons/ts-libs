@@ -127,6 +127,8 @@ importers:
         specifier: workspace:*
         version: link:../queue-manager
 
+  packages/core/fp-utils: {}
+
   packages/core/unit: {}
 
   packages/queue-manager: {}
