@@ -52,8 +52,8 @@ export class Task<T> implements Unit<T> {
 	 */
 	static of<T>(task: () => Promise<T>): Task<T> {
 		return new Task(async () => {
-      return task();
-    });
+			return task();
+		});
 	}
 
 	/**

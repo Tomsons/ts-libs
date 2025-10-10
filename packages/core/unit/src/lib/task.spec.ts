@@ -466,9 +466,9 @@ describe('Task', () => {
 			const task = Task.of(() => {
 				throw new Error('Immediate error');
 			});
-      const result = await task.run();
-      expect(result.isErr()).toBe(true);
-      expect(result.error.message).toBe('Immediate error');
+			const result = await task.run();
+			expect(result.isErr()).toBe(true);
+			expect(result.error.message).toBe('Immediate error');
 		});
 
 		it('should handle non-Error objects as errors', async () => {

@@ -15,7 +15,7 @@ import type { Unit } from './unit.js';
  * console.log(error.error); // "Something went wrong"
  * ```
  */
-export const Err = <E extends unknown>(error: E) => Result.err<never, E>(error);
+export const Err = <E>(error: E) => Result.err<never, E>(error);
 
 /**
  * Creates a Result representing a successful value.
@@ -58,7 +58,7 @@ export const Ok = <T>(value: T) => Result.ok<T>(value);
  * const finalValue = result.unwrapOr(0); // Get value or default
  * ```
  */
-export class Result<T, E extends unknown = Error> implements Unit<T> {
+export class Result<T, E = Error> implements Unit<T> {
 	private constructor(private readonly inner: { type: 'ok'; value: T } | { type: 'err'; error: E }) {}
 
 	/**
