@@ -1,3 +1,13 @@
+## 0.4.0 (2025-10-10)
+
+### 🚀 Features
+
+- **unit:** introduce unit ([398ab01](https://github.com/Tomsons/ts-libs/commit/398ab01))
+
+### ❤️ Thank You
+
+- Thomas Zayouna @Tomsons
+
 ## 0.3.3 (2025-09-10)
 
 ### 🩹 Fixes
