@@ -23,5 +23,18 @@
     "dist",
     "!**/*.tsbuildinfo"
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "keywords": [
+    "typescript",
+    "library",
+    "lightweight",
+    "minimal",
+    "simple",
+    "functional",
+    "utility",
+    "helpers",
+    "tools",
+    "modular",
+    "reusable"
+  ]
 }
