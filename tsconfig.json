@@ -17,6 +17,9 @@
     },
     {
       "path": "./packages/core/unit"
+    },
+    {
+      "path": "./packages/core/fp-utils"
     }
   ]
 }
