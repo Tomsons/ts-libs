@@ -1,3 +1,13 @@
+## 0.5.0 (2025-10-10)
+
+### 🚀 Features
+
+- **fp-utils:** setup ([9906cd4](https://github.com/Tomsons/ts-libs/commit/9906cd4))
+
+### ❤️ Thank You
+
+- Thomas Zayouna @Tomsons
+
 ## 0.4.3 (2025-10-10)
 
 ### 🩹 Fixes
