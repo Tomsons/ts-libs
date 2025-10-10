@@ -172,7 +172,7 @@ describe('Task', () => {
 
 		it('should return error if function task fails', async () => {
 			const valueTask = Task.of((): Promise<number> => Promise.resolve(5));
-      const fnTask = Task.of((): Promise<(num: number) => number> => Promise.reject(new Error('Function error')));
+			const fnTask = Task.of((): Promise<(num: number) => number> => Promise.reject(new Error('Function error')));
 
 			const result = await (valueTask.apply(fnTask) as Task<number>).run();
 			expect(result.isErr()).toBe(true);
