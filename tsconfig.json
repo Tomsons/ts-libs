@@ -14,6 +14,9 @@
     },
     {
       "path": "./examples/react/queue-manager"
+    },
+    {
+      "path": "./packages/core/unit"
     }
   ]
 }
