@@ -1,3 +1,13 @@
+## 0.4.1 (2025-10-10)
+
+### 🩹 Fixes
+
+- **unit:** no factory functions ([f7c45d6](https://github.com/Tomsons/ts-libs/commit/f7c45d6))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.4.0 (2025-10-10)
 
 ### 🚀 Features
