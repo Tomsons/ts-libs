@@ -1,3 +1,14 @@
+## 0.4.3 (2025-10-10)
+
+### 🩹 Fixes
+
+- better tasks ([46823ea](https://github.com/Tomsons/ts-libs/commit/46823ea))
+- lint ([73329bc](https://github.com/Tomsons/ts-libs/commit/73329bc))
+
+### ❤️ Thank You
+
+- tom @Tomsons
+
 ## 0.4.2 (2025-10-10)
 
 ### 🩹 Fixes
